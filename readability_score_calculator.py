@@ -1,4 +1,4 @@
-input_file = open("/Users/chaiwatchaweewan/Documents/testcase.java", "r")
+input_file = open("/Users/chaiwatchaweewan/Desktop/testcase.java", "r")
 
 check_p_1 = False
 check_p_2 = False
