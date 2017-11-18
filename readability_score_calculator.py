@@ -44,6 +44,7 @@ list_loop = []
 list_if = []
 list_indent = []
 list_type = []
+list_all = []
 
 for line in input_file:
     p = 0
@@ -66,31 +67,130 @@ for line in input_file:
                 for r_type in repetition_list:
                     if r_type in line_number:
                         find_indent = line_number.find(r_type)
-                        list_indent.append(find_indent)
-                        list_type.append("R")
+                        # list_indent.append(find_indent)
+                        # list_type.append("R")
+                        list_all.append("R-" + str(find_indent))
                         p = 1
                         break
 
                 for s_type in selection_list:
                     if s_type in line_number:
                         find_indent = line_number.find(s_type)
-                        list_indent.append(find_indent)
-                        list_type.append("S")
+                        # list_indent.append(find_indent)
+                        # list_type.append("S")
+                        list_all.append("S-" + str(find_indent))
                         break
 
                 for d_type in declaration_list:
                     if d_type in line_number:
                         find_indent = line_number.find(d_type)
                         if p == 0 and s == 0:
-                            list_indent.append(find_indent)
-                            list_type.append("D")
+                            # list_indent.append(find_indent)
+                            # list_type.append("D")
+                            list_all.append("D-" + str(find_indent))
 
                         if r_type and d_type in line_number:
                             break
 
-            print "Sequence of Statement:\t\t", list_type
-            print "Indentation:\t\t\t\t", list_indent
-'''
+            d = []
+            s = ""
+            i = 0
+            '''
+            for i, item in enumerate(list_all):
+                # print item, str(i)
+                if "R" in item[i]:
+                    for next_item in list_all[i + 1]:
+                        d.append(next_item)
+                        s += next_item
+                    if "D" in s:
+                        print int(item[2]), int(s[2])
+                        if int(item[2]) <= int(s[2]):
+                            print 'good'
+
+                    # print s
+                    # break
+                break
+            '''
+
+            for i in range(len(list_all)):
+
+                if i < len(list_all) - 1:
+                    if "R" in list_all[i]:
+
+                        print list_all[i][0], int(list_all[i][2])
+
+                        if "D" in list_all[i+1]:
+                            print list_all[i+1][0], int(list_all[i+1][2])
+                            if int(list_all[i][2]) < int(list_all[i+1][2]):
+                                print "Good indent"    # print something
+                            else:
+                                print "Bad indent"
+                        elif "S" in list_all[i+1]:
+                            print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) < int(list_all[i + 1][2]):
+                                print "Good indent"    # print something
+                            else:
+                                print "Bad indent"
+                        elif "R" in list_all[i+1]:
+                            print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) < int(list_all[i + 1][2]):
+                                print "Good indent"  # print something
+                            else:
+                                print "Bad indent"
+
+                    if "D" in list_all[i]:
+
+                        print list_all[i][0], int(list_all[i][2])
+
+                        if "D" in list_all[i + 1]:
+                            print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
+                                print "Good indent"  # print something
+                            else:
+                                print "Bad indent"
+                        elif "S" in list_all[i + 1]:
+                            print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
+                                print "Good indent"  # print something
+                            else:
+                                print "Bad indent"
+                        elif "R" in list_all[i + 1]:
+                            print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
+                                print "Good indent"  # print something
+                            else:
+                                print "Bad indent"
+
+                    if "S" in list_all[i]:
+
+                        print list_all[i][0], int(list_all[i][2])
+
+                        if "D" in list_all[i + 1]:
+                            print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
+                                print "Good indent"  # print something
+                            else:
+                                print "Bad indent"
+                        elif "S" in list_all[i + 1]:
+                            print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
+                                print "Good indent"  # print something
+                            else:
+                                print "Bad indent"
+                        elif "R" in list_all[i + 1]:
+                            print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
+                                print "Good indent"  # print something
+                            else:
+                                print "Bad indent"
+
+                        # print i
+                        # print 'this', list_all[i]
+                        # print 'next', list_all[i + 1]
+            print list_all
+            # print "Sequence of Statement:\t\t", list_type
+            # print "Indentation:\t\t\t\t", list_indent
+            '''
             for i in range(len(list_a)):
 
                 if list_a[i] <= list_a[i + 1] + 2:
@@ -99,4 +199,4 @@ for line in input_file:
                     print "not good"
                 if i == 0:
                     break
-'''
+            '''
