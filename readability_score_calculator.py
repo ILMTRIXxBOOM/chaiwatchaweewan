@@ -45,6 +45,7 @@ list_if = []
 list_indent = []
 list_type = []
 list_all = []
+list_result = []
 
 for line in input_file:
     p = 0
@@ -115,78 +116,83 @@ for line in input_file:
             for i in range(len(list_all)):
 
                 if i < len(list_all) - 1:
+
+                    # Repetition scanning module
                     if "R" in list_all[i]:
 
-                        print list_all[i][0], int(list_all[i][2])
+                        # print list_all[i][0], int(list_all[i][2:])
 
                         if "D" in list_all[i+1]:
-                            print list_all[i+1][0], int(list_all[i+1][2])
-                            if int(list_all[i][2]) < int(list_all[i+1][2]):
-                                print "Good indent"    # print something
+                            # print list_all[i+1][0], int(list_all[i+1][2])
+                            if int(list_all[i][2]) < int(list_all[i+1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
                         elif "S" in list_all[i+1]:
-                            print list_all[i + 1][0], int(list_all[i + 1][2])
-                            if int(list_all[i][2]) < int(list_all[i + 1][2]):
-                                print "Good indent"    # print something
+                            # print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) < int(list_all[i + 1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
                         elif "R" in list_all[i+1]:
-                            print list_all[i + 1][0], int(list_all[i + 1][2])
-                            if int(list_all[i][2]) < int(list_all[i + 1][2]):
-                                print "Good indent"  # print something
+                            # print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) < int(list_all[i + 1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
 
+                    # Declaration scanning module
                     if "D" in list_all[i]:
 
-                        print list_all[i][0], int(list_all[i][2])
+                        # print list_all[i][0], int(list_all[i][2:])
 
                         if "D" in list_all[i + 1]:
-                            print list_all[i + 1][0], int(list_all[i + 1][2])
-                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
-                                print "Good indent"  # print something
+                            # print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
                         elif "S" in list_all[i + 1]:
-                            print list_all[i + 1][0], int(list_all[i + 1][2])
-                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
-                                print "Good indent"  # print something
+                            # print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
                         elif "R" in list_all[i + 1]:
-                            print list_all[i + 1][0], int(list_all[i + 1][2])
-                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
-                                print "Good indent"  # print something
+                            # print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
 
+                    # RSelection scanning module
                     if "S" in list_all[i]:
 
-                        print list_all[i][0], int(list_all[i][2])
+                        # print list_all[i][0], int(list_all[i][2:])
 
                         if "D" in list_all[i + 1]:
-                            print list_all[i + 1][0], int(list_all[i + 1][2])
-                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
-                                print "Good indent"  # print something
+                            # print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
                         elif "S" in list_all[i + 1]:
-                            print list_all[i + 1][0], int(list_all[i + 1][2])
-                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
-                                print "Good indent"  # print something
+                            # print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
                         elif "R" in list_all[i + 1]:
-                            print list_all[i + 1][0], int(list_all[i + 1][2])
-                            if int(list_all[i][2]) <= int(list_all[i + 1][2]):
-                                print "Good indent"  # print something
+                            # print list_all[i + 1][0], int(list_all[i + 1][2])
+                            if int(list_all[i][2]) <= int(list_all[i + 1][2:]):
+                                list_result.append("P")
                             else:
-                                print "Bad indent"
+                                list_result.append("X")
 
                         # print i
                         # print 'this', list_all[i]
                         # print 'next', list_all[i + 1]
+            print list_result
             print list_all
             # print "Sequence of Statement:\t\t", list_type
             # print "Indentation:\t\t\t\t", list_indent
