@@ -1,8 +1,13 @@
+from collections import Counter
+from decimal import *
+
 input_file = open("/Users/chaiwatchaweewan/Desktop/testcase.java", "r")
 
 check_p_1 = False
 check_p_2 = False
 
+c = 0
+count_all = 0
 
 def line_num_count():
     num_lines = sum(1 for line in input_file)
@@ -46,6 +51,8 @@ list_indent = []
 list_type = []
 list_all = []
 list_result = []
+
+percentage = 0
 
 for line in input_file:
     p = 0
@@ -120,7 +127,7 @@ for line in input_file:
                     # Repetition scanning module
                     if "R" in list_all[i]:
 
-                        # print list_all[i][0], int(list_all[i][2:])
+                        print list_all[i][0], int(list_all[i][2:])
 
                         if "D" in list_all[i+1]:
                             # print list_all[i+1][0], int(list_all[i+1][2])
@@ -144,7 +151,7 @@ for line in input_file:
                     # Declaration scanning module
                     if "D" in list_all[i]:
 
-                        # print list_all[i][0], int(list_all[i][2:])
+                        print list_all[i][0], int(list_all[i][2:])
 
                         if "D" in list_all[i + 1]:
                             # print list_all[i + 1][0], int(list_all[i + 1][2])
@@ -168,7 +175,7 @@ for line in input_file:
                     # RSelection scanning module
                     if "S" in list_all[i]:
 
-                        # print list_all[i][0], int(list_all[i][2:])
+                        print list_all[i][0], int(list_all[i][2:])
 
                         if "D" in list_all[i + 1]:
                             # print list_all[i + 1][0], int(list_all[i + 1][2])
@@ -193,16 +200,16 @@ for line in input_file:
                         # print 'this', list_all[i]
                         # print 'next', list_all[i + 1]
             print list_result
-            print list_all
-            # print "Sequence of Statement:\t\t", list_type
-            # print "Indentation:\t\t\t\t", list_indent
-            '''
-            for i in range(len(list_a)):
+            # print list_all
 
-                if list_a[i] <= list_a[i + 1] + 2:
-                    print 'Good indent'
-                else:
-                    print "not good"
-                if i == 0:
-                    break
-            '''
+            for count in list_result:
+                count_all += 1
+                if count == "P":
+                    c = c + 1
+            if c != 0 and count_all != 0:
+                percentage = float((c / count_all) * 100)
+
+print c, count_all
+
+print str(percentage) + "%"
+
